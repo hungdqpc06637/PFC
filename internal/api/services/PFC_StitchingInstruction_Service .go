@@ -189,7 +189,6 @@ func (s *PFCStitchingInstruction) InsertNewPFCItemStitchingInstruction(req *type
 		req.McType,
 		req.NeedleSystem,
 		req.NeedleSize,
-		req.Component,
 		req.NeedlePointType,
 		req.ThreadType,
 		req.StitchingMargin,
