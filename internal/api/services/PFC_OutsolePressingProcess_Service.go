@@ -177,10 +177,10 @@ func (s *PFCOutsolePressingProcess) InsertNewPFCItemOutsolePressingProcess(req *
 	query := `
 		INSERT INTO PFC_ItemOutsolePressingProcess
 		(
-				ItemOutsolePressingProcessID ,OutsolePressingProcessID, TableRow1,TableRow2
+				ItemOutsolePressingProcessID ,OutsolePressingProcessID, TableRow1,TableRow2,AverageWastePerPart,VerageWasteRatePerPart
 		)
 		OUTPUT CAST(INSERTED.ItemOutsolePressingProcessID AS NVARCHAR(36)) AS ItemOutsolePressingProcessID
-		VALUES (NEWID(), ?, ?, ?)
+		VALUES (NEWID(), ?, ?, ?, ?, ?)
 
 	`
 	if err := tx.Raw(
@@ -188,6 +188,8 @@ func (s *PFCOutsolePressingProcess) InsertNewPFCItemOutsolePressingProcess(req *
 		req.OutsolePressingProcessID,
 		req.TableRow1,
 		req.TableRow2,
+		req.AverageWastePerPart,
+		req.VerageWasteRatePerPart,
 	).Scan(
 		&ItemOutsolePressingProcessID,
 	).Error; err != nil {
@@ -212,7 +214,7 @@ func (s *PFCOutsolePressingProcess) GetAllPFCItemOutsolePressingProcess(pfcOutso
 	query := `
 	SELECT
 		CAST(ItemOutsolePressingProcessID AS NVARCHAR(36)) AS ItemOutsolePressingProcessID,
-		CAST(OutsolePressingProcessID AS NVARCHAR(36)) AS OutsolePressingProcessID, TableRow1, TableRow2
+		CAST(OutsolePressingProcessID AS NVARCHAR(36)) AS OutsolePressingProcessID, TableRow1, TableRow2,AverageWastePerPart,VerageWasteRatePerPart
 	FROM PFC_ItemOutsolePressingProcess
 	WHERE OutsolePressingProcessID = @OutsolePressingProcessID 
 	`
@@ -244,7 +246,7 @@ func (s *PFCOutsolePressingProcess) UpdatePFCItemOutsolePressingProcess(req *typ
 	query := `
 		UPDATE PFC_ItemOutsolePressingProcess
 		SET 
-			TableRow1 = ?, TableRow2 = ?
+			TableRow1 = ?, TableRow2 = ? ,AverageWastePerPart =?,VerageWasteRatePerPart =?
 		OUTPUT CAST(INSERTED.ItemOutsolePressingProcessID AS NVARCHAR(36)) AS ItemOutsolePressingProcessID
 		WHERE ItemOutsolePressingProcessID = ?
 	`
@@ -252,6 +254,8 @@ func (s *PFCOutsolePressingProcess) UpdatePFCItemOutsolePressingProcess(req *typ
 		query,
 		req.TableRow1,
 		req.TableRow2,
+		req.AverageWastePerPart,
+		req.VerageWasteRatePerPart,
 		req.ItemOutsolePressingProcessID,
 	).Scan(
 		&ItemOutsolePressingProcessID,

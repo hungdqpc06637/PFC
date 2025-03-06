@@ -358,7 +358,7 @@ func RegisterPFCModelRouter(router *gin.RouterGroup) {
 	router.PUT("/pfcItemProductionChecklist", controllers.PFCProductionChecklis.UpdatePFCItemProductionChecklist)     //item
 	router.DELETE("/pfcItemProductionChecklist", controllers.PFCProductionChecklis.DeletePFCItemProductionChecklist)  //item
 
-	//PFC Production Checklist
+	//PFC Upper Measurement Spec
 	router.POST("/getPFCUpperMeasurementSpecByModelID", controllers.PFCUpperMeasurementSpe.GetAllPFCUpperMeasurementSpec)
 	router.POST("/pfcUpperMeasurementSpec", controllers.PFCUpperMeasurementSpe.InsertPFCUpperMeasurementSpec)
 	router.PUT("/pfcUpperMeasurementSpec", controllers.PFCUpperMeasurementSpe.UpdatePFCUpperMeasurementSpec)
