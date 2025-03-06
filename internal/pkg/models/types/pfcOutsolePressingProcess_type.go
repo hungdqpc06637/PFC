@@ -15,4 +15,7 @@ type PFC_ItemOutsolePressingProcess struct {
 
 	TableRow1 string `gorm:"column:TableRow1"`
 	TableRow2 string `gorm:"column:TableRow2"`
+
+	AverageWastePerPart    string `gorm:"column:AverageWastePerPart"`
+	VerageWasteRatePerPart string `gorm:"column:VerageWasteRatePerPart"`
 }
